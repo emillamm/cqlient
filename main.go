@@ -36,6 +36,7 @@ func main() {
 
 	session, err := cluster.CreateSession()
 	if err != nil {
+		fmt.Println(reflect.ValueOf(err).Type())
 		log.Fatal(err)
 	}
 	defer session.Close()
