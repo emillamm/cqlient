@@ -2,7 +2,7 @@
 Terminal client for sending CQL commands to Cassandra.
 
 ## Installation
-First make sure that GOPATH is set. Then run `go install github.com/emillamm/cqlient`.
+First make sure that GOPATH is set. Then run `go install github.com/emillamm/cqlient@latest`.
 
 ## Usage
 ```

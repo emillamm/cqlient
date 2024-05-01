@@ -1,4 +1,4 @@
-module cqlient
+module github.com/emillamm/cqlient
 
 go 1.22.1
 
