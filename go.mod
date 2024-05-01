@@ -1,4 +1,4 @@
-module gocql-client
+module cqlient
 
 go 1.22.1
 

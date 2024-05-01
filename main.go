@@ -11,13 +11,17 @@ import (
 )
 
 func main() {
-	host := flag.String("host", "localhost", "Cassandra host. Defaults to localhost.")
-	port := flag.Int("port", 9042, "Cassandra host port. Defaults to 9042.")
-	user := flag.String("user", "", "Username - will not use authentication if not set")
-	pass := flag.String("pass", "", "Password - will not use authentication if not set")
-	keyspace := flag.String("keyspace", "", "Cassandra Keyspace")
+	host := flag.String("host", "localhost", "Cassandra host (without port)")
+	port := flag.Int("port", 9042, "Cassandra host port")
+	user := flag.String("user", "", "Username - will not use authentication if blank")
+	pass := flag.String("pass", "", "Password - will not use authentication if blank")
+	keyspace := flag.String("keyspace", "", "Cassandra Keyspace - will not use keyspace of blank")
 	command := flag.String("command", "", "CQL command to execute")
 	flag.Parse()
+
+	if *command == "" {
+		log.Fatal("command cannot be empty")
+	}
 
 	cluster := gocql.NewCluster(fmt.Sprintf("%s:%d", *host, *port))
 	if (*user != "" && *pass != "") {
@@ -42,7 +46,7 @@ func main() {
 	printIter(iter)
 }
 
-// https://pkg.go.dev/github.com/gocql/gocql#example-package-DynamicColumns
+// Borrowed from https://pkg.go.dev/github.com/gocql/gocql#example-package-DynamicColumns
 func printIter(iter *gocql.Iter) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 1, ' ', 0)
 	for i, columnInfo := range iter.Columns() {
