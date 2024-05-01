@@ -5,6 +5,7 @@ Terminal client for sending CQL commands to Cassandra.
 First make sure that GOPATH is set. Then run `go install github.com/emillamm/cqlient`.
 
 ## Usage
+```
 Flags:
   -command string
     	CQL command to execute
@@ -18,4 +19,5 @@ Flags:
     	Cassandra host port. Defaults to 9042. (default 9042)
   -user string
     	Username - will not use authentication if not set
+```
 
